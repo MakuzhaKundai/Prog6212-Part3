@@ -17,109 +17,97 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Contract_Monthly_Claim_System
 build_property.RootNamespace = Contract_Monthly_Claim_System
-build_property.ProjectDir = C:\Users\makuz\OneDrive\Desktop\PROG6212-PART 3-MakuzhaKundai\Prog6212-Part3\
+build_property.ProjectDir = C:\Users\makuz\OneDrive\Desktop\prog6212-part1-MakuzhaKundai-main\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\makuz\OneDrive\Desktop\PROG6212-PART 3-MakuzhaKundai\Prog6212-Part3
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\makuz\OneDrive\Desktop\prog6212-part1-MakuzhaKundai-main
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Account/AccessDenied.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Account/Login.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/Coordinator.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Claims/Coordinator.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXENvb3JkaW5hdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/HR.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Claims/HR.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXEhSLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/Lecturer.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Claims/Lecturer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXExlY3R1cmVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/MyClaims.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Claims/MyClaims.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXE15Q2xhaW1zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/Reports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXFJlcG9ydHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/ReviewClaims.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXFJldmlld0NsYWltcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Claims/Status.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Claims/Status.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhaW1zXFN0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Home/Index.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Home/Privacy.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/LecturerManagement/Create.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/LecturerManagement/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVjdHVyZXJNYW5hZ2VtZW50XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/LecturerManagement/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVjdHVyZXJNYW5hZ2VtZW50XERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/LecturerManagement/Details.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/LecturerManagement/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVjdHVyZXJNYW5hZ2VtZW50XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/LecturerManagement/Edit.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/LecturerManagement/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVjdHVyZXJNYW5hZ2VtZW50XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/LecturerManagement/Index.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/LecturerManagement/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVjdHVyZXJNYW5hZ2VtZW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Shared/Error.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/UserMangament/Create.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/UserMangament/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmdhbWVudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/UserMangament/Edit.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/UserMangament/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmdhbWVudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/UserMangament/Index.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/UserMangament/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmdhbWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/_ViewImports.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/_ViewStart.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/makuz/OneDrive/Desktop/PROG6212-PART 3-MakuzhaKundai/Prog6212-Part3/Views/Shared/_Layout.cshtml]
+[C:/Users/makuz/OneDrive/Desktop/prog6212-part1-MakuzhaKundai-main/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-h3si8dhmcw

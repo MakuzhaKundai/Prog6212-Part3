@@ -1,60 +1,96 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Contract_Monthly_Claim_System.Models;
-using Microsoft.AspNetCore.Identity;
+using Contract_Monthly_Claim_System.Services;
 
 namespace Contract_Monthly_Claim_System.Controllers
 {
-    [Authorize(Roles = "HR")]
+    [Authorize(Roles = "Admin")]
     public class UserManagementController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserService _userService;
 
-        public UserManagementController(UserManager<ApplicationUser> userManager)
+        public UserManagementController(IUserService userService)
         {
-            _userManager = userManager;
+            _userService = userService;
         }
 
-        // GET: UserManagement
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var users = await _userManager.Users.ToListAsync();
+            var users = _userService.GetAllUsers();
             return View(users);
         }
 
-        // GET: UserManagement/Create
+        public IActionResult Details(int id)
+        {
+            var user = _userService.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: UserManagement/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ApplicationUser user, string password, string role)
+        public IActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                user.UserName = user.Email;
-                user.EmailConfirmed = true;
-
-                var result = await _userManager.CreateAsync(user, password);
-
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, role);
-                    return RedirectToAction(nameof(Index));
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                _userService.AddUser(user);
+                return RedirectToAction(nameof(Index));
             }
             return View(user);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var user = _userService.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, User user)
+        {
+            if (id != user.UserId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _userService.UpdateUser(user);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var user = _userService.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _userService.DeleteUser(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

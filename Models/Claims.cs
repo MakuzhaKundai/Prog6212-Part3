@@ -1,51 +1,72 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Contract_Monthly_Claim_System.Models
 {
     public class Claim
     {
-        [Key]
-        public int Id { get; set; }
+        public int ClaimId { get; set; }
 
         [Required]
-        public string LecturerId { get; set; }
+        [Display(Name = "Lecturer ID")]
+        public int LecturerId { get; set; }
 
-        [ForeignKey("LecturerId")]
-        public virtual ApplicationUser Lecturer { get; set; }
+        [Required]
+        [Display(Name = "Month")]
+        public string Month { get; set; } = string.Empty;
+
+        [Required]
+        [Display(Name = "Year")]
+        public int Year { get; set; }
 
         [Required]
         [Display(Name = "Hours Worked")]
-        [Range(0.1, 180, ErrorMessage = "Hours must be between 0.1 and 180")]
+        [Range(0, double.MaxValue)]
         public decimal HoursWorked { get; set; }
 
+        [Required]
         [Display(Name = "Hourly Rate")]
+        [Range(0, double.MaxValue)]
         public decimal HourlyRate { get; set; }
 
-        [Display(Name = "Total Amount")]
-        public decimal TotalAmount { get; set; }
+        [Display(Name = "Notes")]
+        public string? Notes { get; set; }
 
-        [Display(Name = "Additional Notes")]
-        [StringLength(500)]
-        public string AdditionalNotes { get; set; }
-
-        [Display(Name = "Supporting Document")]
-        public string DocumentPath { get; set; }
-
-        [Display(Name = "Original File Name")]
-        public string OriginalFileName { get; set; }
+        [Display(Name = "Documents")]
+        public string? Documents { get; set; }
 
         [Display(Name = "Status")]
-        public string Status { get; set; } = "Pending"; // Pending, ApprovedByCoordinator, ApprovedByManager, Rejected, Approved
+        public string Status { get; set; } = "Pending";
 
         [Display(Name = "Date Submitted")]
         public DateTime DateSubmitted { get; set; } = DateTime.Now;
 
-        [Display(Name = "Date Processed")]
-        public DateTime? DateProcessed { get; set; }
+        [Display(Name = "Submission Date")]
+        public DateTime SubmissionDate { get; set; } = DateTime.Now;
 
-        [Display(Name = "Processed By")]
-        public string ProcessedBy { get; set; }
+        [Display(Name = "Date Approved")]
+        public DateTime? DateApproved { get; set; }
+
+        [Display(Name = "Approval Date")]
+        public DateTime? ApprovalDate { get; set; }
+
+        [Display(Name = "Approved By")]
+        public string? ApprovedBy { get; set; }
+
+        [Display(Name = "Rejection Reason")]
+        public string? RejectionReason { get; set; }
+
+        // Computed properties
+        [Display(Name = "Total Amount")]
+        public decimal TotalAmount => HoursWorked * HourlyRate;
+
+        [Display(Name = "Claim Amount")]
+        public decimal ClaimAmount => HoursWorked * HourlyRate;
+
+        [Display(Name = "Lecturer Name")]
+        public string LecturerName => Lecturer?.FullName ?? "Unknown";
+
+        // Navigation properties
+        public virtual User? User { get; set; }
+        public virtual Lecturer? Lecturer { get; set; }
     }
 }
