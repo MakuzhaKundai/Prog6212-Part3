@@ -1,0 +1,59 @@
+﻿/* Custom styles for the Claim System */
+
+.file-upload-area {
+    border: 2px dashed #dee2e6;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+    .file-upload-area:hover {
+        border-color: #007bff;
+        background-color: #f0f8ff;
+    }
+
+.claim-status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.claim-status-approved {
+    background-color: #d1edff;
+    color: #0c5460;
+}
+
+.claim-status-rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header {
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 0.375rem;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.badge {
+    font-size: 0.75em;
+}

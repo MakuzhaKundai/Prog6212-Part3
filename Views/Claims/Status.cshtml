@@ -1,0 +1,232 @@
+﻿@using Contract_Monthly_Claim_System.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Contract_Monthly_Claim_System.Models.Claim
+@{
+    ViewData["Title"] = "Claim Status";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Claim Status</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Claim Details -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5>Claim Information</h5>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Claim ID:</th>
+                                    <td>@Model.ClaimId</td>
+                                </tr>
+                                <tr>
+                                    <th>Lecturer:</th>
+                                    <td>@Model.LecturerName</td>
+                                </tr>
+                                <tr>
+                                    <th>Period:</th>
+                                    <td>@Model.Month, @Model.Year</td>
+                                </tr>
+                                <tr>
+                                    <th>Hours Worked:</th>
+                                    <td>@Model.HoursWorked</td>
+                                </tr>
+                                <tr>
+                                    <th>Hourly Rate:</th>
+                                    <td>R @Model.HourlyRate</td>
+                                </tr>
+                                <tr>
+                                    <th>Claim Amount:</th>
+                                    <td><strong>R @Model.ClaimAmount</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Status Information</h5>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Status:</th>
+                                    <td>
+                                        <span class="badge @GetStatusBadgeClass(Model.Status)">
+                                            @Model.Status
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Submitted:</th>
+                                    <td>@Model.SubmissionDate.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                                @if (Model.ApprovalDate.HasValue)
+                                {
+                                    <tr>
+                                        <th>@(Model.Status == "Approved" ? "Approved" : "Rejected"):</th>
+                                        <td>@Model.ApprovalDate.Value.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                    <tr>
+                                        <th>By:</th>
+                                        <td>@Model.ApprovedBy</td>
+                                    </tr>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.RejectionReason))
+                                {
+                                    <tr>
+                                        <th>Rejection Reason:</th>
+                                        <td class="text-danger">@Model.RejectionReason</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    @if (!string.IsNullOrEmpty(Model.Notes))
+                    {
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5>Notes</h5>
+                                <div class="alert alert-info">
+                                    @Model.Notes
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Documents Section -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h5>Documents</h5>
+                            @if (!string.IsNullOrEmpty(Model.Documents))
+                            {
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="mb-2">
+                                            <i class="fas fa-file-pdf text-danger"></i>
+                                            @Model.Documents
+                                        </p>
+                                        <small class="text-muted">
+                                            Uploaded: @Model.SubmissionDate.ToString("yyyy-MM-dd HH:mm")
+                                        </small>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    No documents attached to this claim.
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <a href="@Url.Action("MyClaims", "Claims")" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to My Claims
+                            </a>
+
+                            @if (User.IsInRole("Admin") || User.IsInRole("Coordinator") || User.IsInRole("HR"))
+                            {
+                                if (Model.Status == "Pending")
+                                {
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Approve Modal -->
+@if (User.IsInRole("Admin") || User.IsInRole("Coordinator") || User.IsInRole("HR"))
+{
+    <div class="modal fade" id="approveModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Approve Claim</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to approve this claim?</p>
+                    <p><strong>Claim Amount: R @Model.ClaimAmount</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form asp-action="Approve" asp-route-id="@Model.ClaimId" method="post">
+                        <button type="submit" class="btn btn-success">Approve Claim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Modal -->
+    <div class="modal fade" id="rejectModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reject Claim</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form asp-action="Reject" method="post">
+                    <input type="hidden" name="id" value="@Model.ClaimId" />
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="reason" class="form-label">Rejection Reason</label>
+                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Reject Claim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@functions {
+    public string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Approved" => "bg-success",
+            "Rejected" => "bg-danger",
+            "Pending" => "bg-warning",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+<style>
+    .badge {
+        font-size: 0.9em;
+        padding: 0.5em 0.75em;
+    }
+
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .table th {
+        width: 40%;
+        font-weight: 600;
+    }
+</style>

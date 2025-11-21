@@ -1,0 +1,185 @@
+﻿@using Contract_Monthly_Claim_System.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Claim
+@{
+    ViewData["Title"] = "Submit Claim";
+    var userId = Context.Session.GetString("UserId");
+    var userRole = Context.Session.GetString("UserRole");
+    var userName = Context.Session.GetString("UserName");
+}
+
+@if (string.IsNullOrEmpty(userId) || userRole != "Lecturer")
+{
+    <div class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        Please log in as a Lecturer to submit claims.
+        <a href="@Url.Action("Login", "Account")" class="alert-link">Click here to login</a>.
+    </div>
+    return;
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-file-upload me-2"></i>Submit New Claim</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-user me-2"></i>Lecturer Information</h6>
+                                <p class="mb-1"><strong>Name:</strong> @userName</p>
+                                <p class="mb-1"><strong>Hourly Rate:</strong> R @ViewBag.HourlyRate</p>
+                                <p class="mb-0"><strong>Monthly Hours Used:</strong> @ViewBag.MonthlyHours / 180</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-info-circle me-2"></i>Important Notes</h6>
+                                <ul class="mb-0 small">
+                                    <li>Maximum 180 hours per month</li>
+                                    <li>Hourly rate is set by HR</li>
+                                    <li>Claims are reviewed by coordinators</li>
+                                    <li>Auto-calculation updates in real-time</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form asp-action="Lecturer" method="post" id="claimForm">
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" id="hourlyRate" value="@ViewBag.HourlyRate" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label asp-for="HoursWorked" class="form-label fw-bold"></label>
+                                    <input asp-for="HoursWorked" class="form-control form-control-lg"
+                                           placeholder="e.g., 12.5" step="0.5" min="0.5" max="180"
+                                           id="hoursWorked" />
+                                    <span asp-validation-for="HoursWorked" class="text-danger small"></span>
+                                    <small class="text-muted">Enter hours worked (0.5 - 180)</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-bold">Auto-Calculated Amount</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">R</span>
+                                        <input type="text" class="form-control form-control-lg"
+                                               id="totalAmount" readonly value="0.00"
+                                               style="background-color: #f8f9fa; font-weight: bold;" />
+                                    </div>
+                                    <small class="text-muted">
+                                        Rate: R @ViewBag.HourlyRate × Hours = Total
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Notes" class="form-label fw-bold"></label>
+                            <textarea asp-for="Notes" rows="4" class="form-control"
+                                      placeholder="Provide any additional notes or context for this claim..."></textarea>
+                            <span asp-validation-for="Notes" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5 me-3" id="submitBtn">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Claim
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg px-5">
+                                <i class="fas fa-undo me-2"></i>Clear Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Auto-calculate total amount
+        function calculateTotal() {
+            const hoursInput = document.getElementById('hoursWorked');
+            const rateInput = document.getElementById('hourlyRate');
+            const totalInput = document.getElementById('totalAmount');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (!hoursInput || !rateInput || !totalInput || !submitBtn) {
+                console.log('Required elements not found');
+                return;
+            }
+
+            const hours = parseFloat(hoursInput.value) || 0;
+            const rate = parseFloat(rateInput.value) || 0;
+            const total = hours * rate;
+            totalInput.value = total.toFixed(2);
+
+            // Validate monthly hours
+            const monthlyHours = @(ViewBag.MonthlyHours != null ? ViewBag.MonthlyHours : 0);
+            const remainingHours = 180 - monthlyHours;
+
+            if (hours > remainingHours) {
+                submitBtn.disabled = true;
+                document.getElementById('hoursWorked').classList.add('is-invalid');
+                document.getElementById('hoursWorked').nextElementSibling.innerHTML =
+                    `Warning: You only have ${remainingHours} hours remaining this month. Maximum is 180 hours.`;
+            } else {
+                submitBtn.disabled = false;
+                document.getElementById('hoursWorked').classList.remove('is-invalid');
+                document.getElementById('hoursWorked').nextElementSibling.innerHTML =
+                    'Enter hours worked (0.5 - 180)';
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const hoursInput = document.getElementById('hoursWorked');
+
+            if (hoursInput) {
+                hoursInput.addEventListener('input', calculateTotal);
+                hoursInput.addEventListener('change', calculateTotal);
+            }
+
+            // Initial calculation
+            calculateTotal();
+        });
+    </script>
+
+    <style>
+        .form-control-lg {
+            font-size: 1.1rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 3.6.4.4.4-.4'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+    </style>
+}

@@ -1,0 +1,143 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <span class="me-2">Welcome, <strong>@User.FindFirst("FullName")?.Value</strong></span>
+        </div>
+    </div>
+
+    <!-- Role-based Dashboard -->
+    @if (User.IsInRole("Lecturer"))
+    {
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">My Claims</h4>
+                                <p class="card-text">View and manage your monthly claims</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-list fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("MyClaims", "Claims")" class="btn btn-light mt-3">View Claims</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">New Claim</h4>
+                                <p class="card-text">Submit a new monthly claim</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-plus fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Create", "Claims")" class="btn btn-light mt-3">Create Claim</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (User.IsInRole("Admin") || User.IsInRole("Coordinator") || User.IsInRole("HR"))
+    {
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">Pending Claims</h4>
+                                <p class="card-text">Review and process pending claims</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-tasks fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Coordinator", "Claims")" class="btn btn-light mt-3">Review Claims</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">All Claims</h4>
+                                <p class="card-text">View all claims in the system</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-file-alt fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("HR", "Claims")" class="btn btn-light mt-3">View All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-dark">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">User Management</h4>
+                                <p class="card-text">Manage system users</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-users fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Index", "UserManagement")" class="btn btn-light mt-3">Manage Users</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">Lecturer Management</h4>
+                                <p class="card-text">Manage lecturer information</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-chalkboard-teacher fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Index", "LecturerManagement")" class="btn btn-light mt-3">Manage Lecturers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div>
+                                <h4 class="card-title">Reports</h4>
+                                <p class="card-text">Generate system reports</p>
+                            </div>
+                            <div class="ms-auto">
+                                <i class="fas fa-chart-bar fa-3x opacity-50"></i>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("Reports", "Claims")" class="btn btn-light mt-3">View Reports</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

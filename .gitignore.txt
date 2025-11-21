@@ -1,0 +1,53 @@
+# Visual Studio cache and settings
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# IDE-specific
+*.ncb
+*.sdf
+*.cachefile
+*.dbmdl
+*.bak
+*.vsidx
+*.VC.db
+*.opendb
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.nuget.props
+*.nuget.targets
+packages/
+
+# Others
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.log
+*.ldf
+*.mdf
+*.zip
+
+# Rider / JetBrains
+.idea/
+*.iml
